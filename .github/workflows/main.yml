@@ -1,0 +1,26 @@
+name: Update YouTube Music Widget
+on:
+  schedule:
+    - cron: "0 */24 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-widget:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate Widget
+        uses: sst-06/generate-youtube-music-widget@main
+        with:
+          playlist_id: "PLvBe2r65e9pHdbVwCSTlb4bf1IKBjWM_B"
+          output_path: "assets/youtube-music-widget.svg"
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/youtube-music-widget.svg
+          git commit -m "Update YouTube Music widget" || exit 0
+          git push
