@@ -1,26 +1,33 @@
-name: Update YouTube Music Widget
+name: build profile assets
 on:
   schedule:
-    - cron: "0 */24 * * *"
+    - cron: "0 13 * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
-  update-widget:
+  generate:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Generate Widget
-        uses: sst-06/generate-youtube-music-widget@main
+      - name: generate youtube music widget
+        uses: daeun503/profile-music-widget@v1
         with:
-          playlist_id: "PLvBe2r65e9pHdbVwCSTlb4bf1IKBjWM_B"
-          output_path: "assets/youtube-music-widget.svg"
+          playlist_id: PLvBe2r65e9pHdbVwCSTlb4bf1IKBjWM_B
+          theme: default.svg
 
-      - name: Commit and Push
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/youtube-music-widget.svg
-          git commit -m "Update YouTube Music widget" || exit 0
-          git push
+      - name: Deploy dist to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+          keep_history: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
