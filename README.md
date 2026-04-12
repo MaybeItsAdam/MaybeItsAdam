@@ -2,13 +2,9 @@
   <tr>
     <td>
       <img src="https://www.maybeitsadam.co.uk/maybeitsadam-button.gif" width="400"/>
-      <h2>'Ello</h2>
       <p>2nd Year Compsci MEng @ UCL</p>
       <p>I make several things</p>
-      <p>Skills:</p>
-      <li>Encyclopedic knowledge of the music of ABBA</li>
-      <li>Can name all tube stations</li>
-      <li>Pretty good at kartwheels</li>
+      <img src="https://i.pinimg.com/originals/43/95/0d/43950d1a149287d5c36640c36c4a1db2.gif"/>
     </td>
     <td>
       <img src="https://raw.githubusercontent.com/MaybeItsAdam/MaybeItsAdam/bb8d3941b8c25471e94c5885474a7745c12e1fa5/youtube-music-widget.svg" width="400"/>
